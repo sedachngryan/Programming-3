@@ -1,35 +1,13 @@
 class Change {
     constructor(x, y, index) {
-        this.x = x;
-        this.y = y;
-        this.index = index;
-        this.directions = [
-            [this.x - 1, this.y - 1],
-            [this.x, this.y - 1],
-            [this.x + 1, this.y - 1],
-            [this.x - 1, this.y],
-            [this.x + 1, this.y],
-            [this.x - 1, this.y + 1],
-            [this.x, this.y + 1],
-            [this.x + 1, this.y + 1]
-        ];
-
+        super(x, y, index);
     }
 
     chooseCell(char0, char1, char2, char3, char4) {
-        var found = [];
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == char0 || matrix[y][x] == char1 || matrix[y][x] == char2 || matrix[y][x] == char3 || matrix[y][x] == char4) {
-                    found.push(this.directions[i]);
-                }
-            }
-        }
-        return found;
+        this.getNewCoordinates();
+        return super.chooseCell(char0, char1, char2, char3, char4);
     }
-    
+
     move() {
         var empty = random(this.chooseCell(0, 1, 2, 3, 4))
         if (empty) {
